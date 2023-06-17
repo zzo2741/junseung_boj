@@ -4,11 +4,7 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-/*
- * ⨳ import 제대로 했는지 확인
- *
- */
-public class Level1 {
+public class Level2 {
     /*
      * 단계 : 1
      * 문제번호 : 2557
