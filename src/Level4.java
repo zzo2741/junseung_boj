@@ -1,9 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /*
  * ⨳ import 제대로 했는지 확인
@@ -88,7 +86,7 @@ public class Level4 {
      * 문제번호 : 10810
      * 제목 : 공 넣기
      */
-    public void q5()throws IOException{
+    public void q5() throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int a = Integer.parseInt(st.nextToken()); // 배열크기
@@ -112,7 +110,7 @@ public class Level4 {
      * 문제번호 : 10813
      * 제목 : 공 바꾸기
      */
-    public void q6()throws IOException{
+    public void q6() throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int a = Integer.parseInt(st.nextToken()); // 배열크기
@@ -133,5 +131,89 @@ public class Level4 {
         for(int i = 0; i < a; i++){
             System.out.print(list[i] + " ");
         }
+    }
+    /*
+     * 단계 : 7
+     * 문제번호 : 5597
+     * 제목 : 과제 안 내신 분..?
+     */
+    public void q7() throws IOException{
+        HashMap<Integer, Boolean> map = new HashMap<>();
+        Scanner sc = new Scanner(System.in);
+        for(int i = 1; i <= 30; i++){
+            if (sc.hasNextInt()) {
+                int input = sc.nextInt();
+                map.put(input, true);
+            }
+        }
+        for(int i = 1; i <= 30; i++){
+            if(!map.containsKey(i)){
+                System.out.println(i);
+            }
+        }
+    }
+    /*
+     * 단계 : 8
+     * 문제번호 : 3052
+     * 제목 : 나머지
+     */
+    public void q8() throws IOException{
+        HashSet<Integer> set = new HashSet<>();
+        Scanner sc = new Scanner(System.in);
+        for(int i = 1; i <= 10; i++){
+            if (sc.hasNextInt()) {
+                set.add(sc.nextInt() % 42);
+            }
+        }
+        System.out.println(set.size());
+    }
+    /*
+     * 단계 : 9
+     * 문제번호 : 10811
+     * 제목 : 바구니 뒤집기
+     */
+    public void q9() throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int a = Integer.parseInt(st.nextToken()); //바구니 수
+        int b = Integer.parseInt(st.nextToken()); //입력
+        int[] list = new int[a];
+        for(int i = 0; i < a; i++){
+            list[i] = i + 1;
+        }
+        for(int i = 1; i <= b; i++){
+            st = new StringTokenizer(br.readLine());
+            int x = Integer.parseInt(st.nextToken()); //시작
+            int y = Integer.parseInt(st.nextToken()); // 끝
+            for(int j = 0; j <= (y - x) / 2; j++){
+                int temp = list[x - 1 + j];
+                list[x - 1 + j] = list[y - 1 - j];
+                list[y - 1 - j] = temp;
+            }
+        }
+        for(int i = 0; i < a; i++){
+            System.out.print(list[i] + " ");
+        }
+    }
+    /*
+     * 단계 : 10
+     * 문제번호 : 1546
+     * 제목 : 평균
+     */
+    public void q10() throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int num = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        double max = 0, grade = 0, total = 0;
+        double result = 0;
+        for(int i =0; i < num; i++){
+            grade = Double.parseDouble(st.nextToken());
+            if(max <= grade){
+                max = grade;
+            }
+            total +=  grade;
+        }
+        result = ((total / num) / max) * 100;
+        System.out.println(result);
     }
 }
