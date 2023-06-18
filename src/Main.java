@@ -4,25 +4,28 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String input = br.readLine();
-        HashMap<String, Integer> map = new HashMap<>();
-        HashSet<String> set = new HashSet<>();
-        char[] list = input.toCharArray();
-        for(int i = 0; i < list.length; i++){
-            String str =  String.valueOf(list[i]).toUpperCase();
-            set.add(str);
-            if(!map.containsKey(str)){
-                map.put(str, 1);
-            }else{
-                map.put(str, map.get(str) + 1);
+        int num = Integer.parseInt(br.readLine());
+        List<Integer> list = new ArrayList<>();
+        double x = 0;
+        for(int i = 0; i < num; i++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int num2 = Integer.parseInt(st.nextToken());
+            double total = 0;
+            for(int j = 0; j < num2; j++){
+                int a = Integer.parseInt(st.nextToken());
+                list.add(a);
+                total += a;
             }
-        }
-        System.out.println(map.toString());
-        String outStr = "";
-        int max = 0;
-        for(int i = 0; i < list.length; i++){
+            for(int k = 0; k < list.size(); k++){
+                if(list.get(k) > (total / num2)) {
+                    x++;
+                }
+            }
+            System.out.printf("%.3f", x / list.size() * 100);
+            System.out.print("%\n");
+            x =0;
+            list.clear();
 
         }
-
     }
 }
