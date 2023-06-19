@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 /*
@@ -101,7 +99,6 @@ public class Level6 {
         }else{
             System.out.println(list2.get(0));
         }
-
     }
     /*
      * 단계 : 6
@@ -140,7 +137,39 @@ public class Level6 {
      * 제목 : 크로아티아 알파벳
      */
     public void q7() throws IOException{
-
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        String input = br.readLine();
+        char[] list = input.toCharArray();
+        String[] ca = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
+        List<String> alist = new ArrayList<>();
+        for(int i = 0; i < list.length; i++){
+            String temp = String.valueOf(list[i]);
+            for(int k = 0; k < ca.length; k++){
+                if(ca[k].indexOf(temp) == 0){
+                    sb = new StringBuilder();
+                    for (int j = 0; j < ca[k].length(); j++){
+                        if(i + j < list.length){
+                            sb.append(list[i + j]);
+                        }
+                    }
+                    if(ca[k].contentEquals(sb)){
+                        alist.add(String.valueOf(sb));
+                        i = i + ca[k].length() - 1;
+                    }else{
+                        if(k < ca.length - 1){
+                            continue;
+                        }else{
+                            alist.add(temp);
+                        }
+                    }
+                    break;
+                }else if(k == ca.length - 1){
+                    alist.add(temp);
+                }
+            }
+        }
+        System.out.print(alist.size());
     }
     /*
      * 단계 : 8
@@ -148,7 +177,36 @@ public class Level6 {
      * 제목 : 그룹 단어 체커
      */
     public void q8() throws IOException{
-
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int a = Integer.parseInt(br.readLine());
+        int output = a;
+        char[] list;
+        String lastCheckStr;
+        Set<String> set;
+        for(int i = 0; i < a; i++){
+            list = br.readLine().toCharArray();
+            lastCheckStr = "";
+            set = new HashSet<>();
+            for(int j = 0; j < list.length; j++){
+                boolean flag = true;
+                if(!lastCheckStr.equals(String.valueOf(list[j]))){
+                    Iterator<String> iter = set.iterator();
+                    while(iter.hasNext()){
+                        if(iter.next().equals(String.valueOf(list[j]))){
+                            flag = false;
+                            output--;
+                            break;
+                        }
+                    }
+                    set.add(String.valueOf(list[j]));
+                    lastCheckStr = String.valueOf(list[j]);
+                    if(!flag) {
+                        break;
+                    }
+                }
+            }
+        }
+        System.out.println(output);
     }
     /*
      * 단계 : 9
@@ -156,6 +214,27 @@ public class Level6 {
      * 제목 : 너의 평점은
      */
     public void q9() throws IOException{
-
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Map<String, Double> map = new HashMap<>();
+        StringTokenizer st;
+        map.put("A+", 4.5);
+        map.put("A0", 4.0);
+        map.put("B+", 3.5);
+        map.put("B0", 3.0);
+        map.put("C+", 2.5);
+        map.put("C0", 2.0);
+        map.put("D+", 1.5);
+        map.put("D0", 1.0);
+        map.put("F", 0.0);
+        double x = 0, y = 0;
+        for(int i = 0; i < 20; i++){
+            st = new StringTokenizer(br.readLine());
+            String a = st.nextToken();
+            double b = Double.parseDouble(st.nextToken());
+            String c = st.nextToken();;
+            x += c.equals("P") ? 0 : (map.get(c) * b);
+            y += c.equals("P") ? 0 : b;
+        }
+        System.out.println(x / y);
     }
 }
