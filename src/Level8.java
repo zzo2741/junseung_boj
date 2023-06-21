@@ -193,7 +193,16 @@ public class Level8 {
      * 제목 : 달팽이는 올라가고 싶다
      */
     public void q7() throws IOException{
-
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
+        int c = Integer.parseInt(st.nextToken());
+        int x = (c - b) / (a - b); // (길이 - 미끄러짐) / (올라감 - 미끄러짐)
+        if((c - b) % (a - b) > 0){ // 나머지가 있으면 +1 (하루 더 올라가야함)
+            x++;
+        }
+        System.out.println(x);
     }
     /*
      * 단계 : 8
