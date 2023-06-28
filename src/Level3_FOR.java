@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class Level3 {
+public class Level3_FOR {
     /*
      * 단계 : 1
      * 문제번호 : 2557

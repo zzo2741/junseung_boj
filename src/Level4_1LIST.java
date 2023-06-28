@@ -7,7 +7,7 @@ import java.util.*;
  * ⨳ import 제대로 했는지 확인
  *
  */
-public class Level4 {
+public class Level4_1LIST {
     /*
      * 단계 : 1
      * 문제번호 : 10807

@@ -5,7 +5,7 @@ import java.util.*;
  * ⨳ import 제대로 했는지 확인
  *
  */
-public class Level10 {
+public class Level10_KIHA {
     /*
      * 단계 : 1
      * 문제번호 : 27323

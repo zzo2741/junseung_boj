@@ -7,7 +7,7 @@ import java.util.*;
  * ⨳ import 제대로 했는지 확인
  *
  */
-public class Level5 {
+public class Level5_STRING {
     /*
      * 단계 : 1
      * 문제번호 : 27866
