@@ -75,7 +75,7 @@ public class Level12_BF {
      */
     public void q3() throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] list = br.readLine().split(" "); // 0 ~ 5
+        String[] list = br.readLine().split(" ");
         int a = Integer.parseInt(list[0]);
         int b = Integer.parseInt(list[1]);
         int c = Integer.parseInt(list[2]);
