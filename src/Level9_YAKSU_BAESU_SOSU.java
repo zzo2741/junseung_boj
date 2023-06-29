@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
  * ⨳ import 제대로 했는지 확인
  *
  */
-public class Level9_YAKSU {
+public class Level9_YAKSU_BAESU_SOSU {
     /*
      * 단계 : 1
      * 문제번호 : 5086
