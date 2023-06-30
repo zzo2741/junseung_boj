@@ -18,7 +18,6 @@ class Main {
         while(iter.hasNext()){
             map.put(iter.next(), k++);
         }
-        //bw.write(set.toString() + "\n");
         for(int j = 0; j < list.length; j++){
             bw.write(map.get(list[j]) + " ");
         }
