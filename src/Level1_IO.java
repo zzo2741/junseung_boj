@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
  * ⨳ import 제대로 했는지 확인
  *
  */
-public class Level1_IO_4RULES {
+public class Level1_IO {
     /*
      * 단계 : 1
      * 문제번호 : 2557
