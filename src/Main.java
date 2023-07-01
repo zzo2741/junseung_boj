@@ -4,24 +4,19 @@ class Main {
     public static void main (String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        int a = Integer.parseInt(br.readLine());
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        Integer[] list = new Integer[a];
-        int i = 0;
-        while(st.hasMoreTokens()){
-            list[i++] = Integer.parseInt(st.nextToken());
+        Set<String> set = new HashSet<>();
+        StringBuilder sb = null;
+        String[] list = br.readLine().split("");
+
+        for(int i = 0; i < list.length; i++){
+            sb = new StringBuilder();
+            for(int j = i; j < list.length; j++){
+                sb.append(list[j]);
+                set.add(sb.toString());
+            }
         }
-        TreeSet<Integer> set = new TreeSet<>(List.of(list));
-        HashMap<Integer, Integer> map = new HashMap<>();
-        Iterator<Integer> iter = set.iterator();
-        int k = 0;
-        while(iter.hasNext()){
-            map.put(iter.next(), k++);
-        }
-        //bw.write(set.toString() + "\n");
-        for(int j = 0; j < list.length; j++){
-            bw.write(map.get(list[j]) + " ");
-        }
+        bw.write(String.valueOf(set.size()));
+
         bw.close();
     }
 }
