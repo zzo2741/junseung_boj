@@ -1,10 +1,12 @@
+package step;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class Level2_IF {
+public class Level3_FOR {
     /*
      * 단계 : 1
      * 문제번호 : 2557
