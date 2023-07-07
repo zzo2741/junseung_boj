@@ -4,24 +4,38 @@ import java.math.*;
 class Main {
     public static void main (String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
+
+        boolean[] list = new boolean[1000001];
+        list[0] = list[1] = true;
+
         /*
-        1 1
-        2 1 2
-        3 1   3
-        4 1 2   4
-        5 1       5
-        6 1 2 3     6
-        7 1           7
-        8 1 2   4       8
-        9 1   3           9
-        101 2     5         10
+        기존에는 Set에 모든 소수 넣고 찾는 형식 => 시간초과로 미통과..
+        에라토스테네스의 체 사용하여 소수 가리기 배열에서 Key : Index , value : 소수 false , 아니면 true
          */
-        long a = Integer.parseInt(br.readLine());
-        long total = 0;
-        for(long i = 1; i <= a; i++){
-            total += i * (a / i); // 숫자의 갯수
+        for(int i = 2; i <= Math.sqrt(list.length); i++){
+           for(int j = i + i; j < list.length; j += i){
+               list[j] = true;
+           }
         }
-        System.out.println(total);
+
+        while(true){
+            int N = Integer.parseInt(br.readLine());
+            if(N == 0) {
+                break;
+            }
+
+            boolean flag = false;
+            for(int i = 2; i <= N / 2; i++){
+                if(!list[i] && !list[N - i]){
+                    flag = true;
+                    System.out.println(N + " = " + i + " + " + (N - i));
+                    break;
+                }
+            }
+
+            if(!flag){
+                System.out.println("Goldbach's conjecture is wrong.");
+            }
+        }
     }
 }
