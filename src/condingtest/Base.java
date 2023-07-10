@@ -2,9 +2,7 @@ package condingtest;
 
 import java.io.*;
 import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.Stack;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /*
  * ⨳ import 제대로 했는지 확인
@@ -123,6 +121,7 @@ public class Base {
      * 주제 : 수학
      * 문제번호 : 17425
      * 제목 : 약수의 합
+     * 등급 : 골드 4
      */
     public void q_17425() throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -132,14 +131,17 @@ public class Base {
 
         long[] list = new long[1000001];
         long[] sumList = new long[1000001];
-        Arrays.fill(list, 1);
+        Arrays.fill(list, 1); // 모든 소수는 1이 약수
 
+        // 에라토스테네스의 체
+        // i이하의 약수의 합으로 채우기
         for(int i = 2; i <= 1000000; i++){
             for(int j = 1; i * j <= 1000000; j++){
                 list[i * j] += i;
             }
         }
-
+    
+        // i이하의 약수의 합으로 채우기
         for(int i = 1; i <= 1000000; i++){
             sumList[i] = sumList[i-1] + list[i];
         }
@@ -186,6 +188,7 @@ public class Base {
      * 주제 : 수학
      * 문제번호 : 6588
      * 제목 : 골드바흐의 추측
+     * 등급 : 실버1
      */
     public void q_6588() throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -230,8 +233,245 @@ public class Base {
      * 제목 : 일곱 난쟁이
      */
     public void q_2309() throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        List<Integer> L = new ArrayList<>();
+        int total = 0;
+        for(int i = 0; i < 9; i++){
+            L.add(Integer.parseInt(br.readLine()));
+            total += L.get(i);
+        }
+        Collections.sort(L);
+        for(int i = 0; i < 9; i++){
+            for(int j = i + 1; j < 9; j++){
+                if(total - 100 == L.get(i) + L.get(j)){
+                    for(int k = 0; k < L.size(); k++){
+                        if(k != i && k != j){
+                            System.out.println(L.get(k));
+                        }
+                    }
+                    return;
+                }
+            }
+        }
+    }
+
+    /*
+     * 주제 : 브루트 포스
+     * 문제번호 : 3085
+     * 제목 : 사탕 게임
+     * 등급 : 실버2
+     */
+    public void q_3085() throws IOException{
+        // Base_3085 참조
+    }
+
+    /*
+     * 주제 : 브루트 포스
+     * 문제번호 : 1476
+     * 제목 : 날짜 계산
+     */
+    public void q_1476() throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int E = Integer.parseInt(st.nextToken());
+        int S = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int CNT = 1;
+
+        while(true){
+            E--;
+            S--;
+            M--;
+
+            if(E == 0 && S == 0 && M == 0) {
+                break;
+            }
+
+            if(E == 0) E = 15;
+            if(S == 0) S = 28;
+            if(M == 0) M = 19;
+
+            CNT ++;
+
+        }
+
+        System.out.println(CNT);
+    }
+
+    /*
+     * 주제 : 브루트 포스
+     * 문제번호 : 1107
+     * 제목 : 리모컨
+     * 등급 : 골드5
+     */
+    public void q_1107() throws IOException{
+        /*
+        1. 현재 채널 100 100인 경우 0
+        2. + / - 로만으로 채널 가는 경우 (최소값)
+        3. 채널 간 후에 + / -로 채널 가는 경우
+         */
+        /* BufferedReader로 처리 시 NullPointer났음
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        int M = Integer.parseInt(br.readLine());
+        boolean[] arr = new boolean[10]; // 부숴진 버튼 체크
+        Arrays.fill(arr, false);
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        while(st.hasMoreTokens()){
+            arr[Integer.parseInt(st.nextToken())] = true;
+        }
+         */
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int M = sc.nextInt();
+        boolean[] arr = new boolean[10]; // 부숴진 버튼 체크
+        Arrays.fill(arr, false);
+
+        for(int i = 0; i < M; i++){
+            arr[sc.nextInt()] = true;
+        }
+
+        int result = Math.abs(N - 100); // 2번 케이스
+        for(int i = 0; i <= 999999; i++){ // 9번만 누를수 있는 경우
+            String str = String.valueOf(i);
+            int len = str.length();
+
+            boolean flag = false;
+            for(int j = 0; j < len; j++){
+                if(arr[str.charAt(j) - '0']){ // 못누르는 버튼 있으면 끝
+                    flag = true;
+                    break;
+                }
+            }
+
+            if(!flag){ // 고장나지 않은 버튼만
+                int min = Math.abs(N - i) + len; //누른 채널 - 가고싶은 채널 + 버튼 이동 수
+                result = Math.min(min, result);
+            }
+        }
+
+        System.out.println(result);
+    }
+
+    /*
+     * 주제 : 브루트 포스
+     * 문제번호 : 14500
+     * 제목 : 테트로미노
+     */
+    public void q_14500() throws IOException{
 
     }
+
+    /*
+     * 주제 : 브루트 포스
+     * 문제번호 : 6064
+     * 제목 : 카잉 달력
+     */
+    public void q_6064() throws IOException{
+
+    }
+
+    /*
+     * 주제 : 브루트 포스
+     * 문제번호 : 1748
+     * 제목 : 수 이어 쓰기 1
+     */
+    public void q_1748() throws IOException{
+
+    }
+
+    /*
+     * 주제 : 브루트 포스
+     * 문제번호 : 9095
+     * 제목 : 1, 2, 3 더하기
+     */
+    public void q_9095() throws IOException{
+
+    }
+
+    /*
+     * 주제 : 브루트 포스 - N과 M
+     * 문제번호 : 15649
+     * 제목 : N과 M (1)
+     */
+    public void q_15649() throws IOException{
+
+    }
+
+    /*
+     * 주제 : 브루트 포스 - N과 M
+     * 문제번호 : 000
+     * 제목 : 000
+     */
+    public void q_15650() throws IOException{
+
+    }
+
+    /*
+     * 주제 : 브루트 포스 - N과 M
+     * 문제번호 : 000
+     * 제목 : 000
+     */
+    public void q_15651() throws IOException{
+
+    }
+
+    /*
+     * 주제 : 브루트 포스 - N과 M
+     * 문제번호 : 000
+     * 제목 : 000
+     */
+    public void q_15652() throws IOException{
+
+    }
+
+    /*
+     * 주제 : 브루트 포스 - N과 M
+     * 문제번호 : 000
+     * 제목 : 000
+     */
+    public void q_15654() throws IOException{
+
+    }
+
+    /*
+     * 주제 : 브루트 포스 - N과 M
+     * 문제번호 : 000
+     * 제목 : 000
+     */
+    public void q_15655() throws IOException{
+
+    }
+
+    /*
+     * 주제 : 브루트 포스 - N과 M
+     * 문제번호 : 000
+     * 제목 : 000
+     */
+    public void q_15656() throws IOException{
+
+    }
+
+    /*
+     * 주제 : 브루트 포스 - N과 M
+     * 문제번호 : 000
+     * 제목 : 000
+     */
+    public void q_15657() throws IOException{
+
+    }
+
+    /*
+     * 주제 : 브루트 포스 - N과 M
+     * 문제번호 : 000
+     * 제목 : 000
+     */
+    public void q18290() throws IOException{
+
+    }
+
 
     /*
      * 주제 : 00
