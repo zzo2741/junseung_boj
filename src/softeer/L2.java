@@ -59,4 +59,8 @@ public class L2 {
             System.out.println("mixed");
         }
     }
+
+    public void q3() throws IOException {
+        // L2_Q3확인
+    }
 }
