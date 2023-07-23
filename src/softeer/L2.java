@@ -63,4 +63,98 @@ public class L2 {
     public void q3() throws IOException {
         // L2_Q3확인
     }
+    public void q4() throws IOException { // 지도 자동 구축
+        // 점이 계속 생기는 문제 2 * 2 = 4 > 3 * 3 = 9  > 3 + (3 - 1)^2 = 25 ~~
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int a = 2;
+        for(int i = 1; i <= N; i++){
+            a = a + (a - 1);
+            // System.out.println(a);
+        }
+
+        System.out.println(a * a);
+    }
+
+    public void q5() throws IOException { // 비밀 메뉴 (문자열 비교 문제)
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        int M = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        String[] str = br.readLine().split(" ");
+        for(int i = 0; i < str.length; i++){
+            sb.append(str[i]);
+        }
+
+        String secret = sb.toString();
+
+        sb = new StringBuilder();
+        String[] inputStrArr = br.readLine().split(" ");
+        for(int i = 0; i < inputStrArr.length; i++){
+            sb.append(inputStrArr[i]);
+        }
+
+        String inputStr = sb.toString();
+
+        if(inputStr.indexOf(secret) > -1){
+            System.out.println("secret");
+        }else{
+            System.out.println("normal");
+        }
+    }
+
+    public void q6() throws IOException { // 회의실 예약 (문자열 문제)
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        TreeMap<String, boolean[]> map = new TreeMap<>();
+
+        for(int i = 0; i < N; i++){
+            map.put(br.readLine(), new boolean[18]);
+        }
+
+        for(int i = 0; i < M; i++){
+            st = new StringTokenizer(br.readLine());
+            Arrays.fill(map.get(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), true);
+        }
+
+        List<String> strList;
+        for(String key : map.keySet()){
+            strList = new ArrayList<>();
+            sb.append("Room ").append(key).append(":\n");
+
+            int start = 0;
+            for(int i = 9; i < 18; i++){
+                // System.out.print(map.get(key)[i] + " ");
+                if(!map.get(key)[i]){
+                    if(start == 0){
+                        start = i;
+                    }
+                    if(i == 17){
+                        strList.add((start < 10 ? "0" + start : start) + "-" + (i + 1));
+                    }
+                }else if(map.get(key)[i]){
+                    if(start != 0){
+                        strList.add((start < 10 ? "0" + start : start) + "-" + i);
+                    }
+                    start = 0;
+                }
+            }
+
+            // System.out.println(strList);
+            sb.append(strList.size() == 0 ? "Not available\n" : strList.size() + " available:\n");
+            for(String str : strList){
+                sb.append(str).append("\n");
+            }
+            if(!key.equals(map.lastKey())){
+                sb.append("-----\n");
+            }
+        }
+
+        System.out.println(sb);
+    }
 }
