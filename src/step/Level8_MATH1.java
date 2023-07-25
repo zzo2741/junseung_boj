@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
  * ⨳ import 제대로 했는지 확인
  *
  */
-public class Level8_MATH1 {
+public class      Level8_MATH1 {
     /*
      * 단계 : 1
      * 문제번호 : 2745

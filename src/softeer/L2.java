@@ -61,7 +61,7 @@ public class L2 {
     }
 
     public void q3() throws IOException {
-        // L2_Q3확인
+        // L2_Q3 참고
     }
     public void q4() throws IOException { // 지도 자동 구축
         // 점이 계속 생기는 문제 2 * 2 = 4 > 3 * 3 = 9  > 3 + (3 - 1)^2 = 25 ~~
@@ -156,5 +156,66 @@ public class L2 {
         }
 
         System.out.println(sb);
+    }
+
+    public void q7() throws IOException { // 전광판 (구현)
+        // L2_Q7 참고
+    }
+
+    public void q8() throws IOException { // GBC
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+
+        Queue<int[]> queue = new LinkedList<>();
+        int overSpeed = 0;
+
+        for(int i = 0; i < N; i++){
+            st = new StringTokenizer(br.readLine());
+            queue.offer(new int[]{Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())});
+        }
+
+        for(int i = 0; i < M; i++){
+            st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+
+            while(queue.peek() != null){
+                int[] arr = queue.peek();
+
+                if(overSpeed < b - arr[1]){
+                    overSpeed = b - arr[1];
+                }
+                // System.out.println(a + " " + arr[0] + " " + arr[1] + " " + overSpeed); //
+
+                if(arr[0] - a < 0){
+                    a = a - arr[0];
+                    queue.poll();
+                }else{
+                    arr[0] = arr[0] - a;
+                    if(arr[0] == 0){ // 0 일때의 처리를 해줘야함
+                        queue.poll();
+                    }
+                    break;
+                }
+            }
+        }
+        System.out.println(overSpeed);
+    }
+
+    // 수학적인 지식이 있어야하는 문제
+    public void q9() throws IOException { // 바이러스
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        long K = Long.parseLong(st.nextToken());
+        long P = Long.parseLong(st.nextToken());
+        long N = Long.parseLong(st.nextToken());
+        long r = (K * P) % 1000000007; // 나머지를 한번 구한 값
+        // System.out.println(r);
+        for(int i = 1; i < N; i++){
+            r = (r * P) % 1000000007; // 나머지와 곱하고 나머지 구하고 연속
+        }
+        System.out.println(r);
     }
 }
