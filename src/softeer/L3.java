@@ -134,4 +134,54 @@ public class L3 {
         // 스택 사이즈가 강의실 배정 수
         System.out.println(stack.size());
     }
+
+    public void q6() throws IOException { // 우물안의 개구리
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = stringToInt(st.nextToken());
+        int W = stringToInt(st.nextToken());
+
+        st = new StringTokenizer(br.readLine());
+        // 자신이 들 수 있는 무게와 자신이 더 최고라고 생각하는 배열 두개
+        int[][] arr = new int[2][N];
+        Arrays.fill(arr[1], 1); // 1이면 자신이 최고 0이면 최고가 아님
+        for(int i = 0; i < N; i++){
+            arr[0][i] = stringToInt(st.nextToken());
+        }
+
+        // 비교
+        for(int i = 0; i < W; i++){
+            st = new StringTokenizer(br.readLine());
+            int ai = stringToInt(st.nextToken()) - 1;
+            int bi = stringToInt(st.nextToken()) - 1;
+            if(arr[0][ai] > arr[0][bi]){ // a가 최고
+                arr[1][bi] = 0;
+            }else if(arr[0][ai] < arr[0][bi]){ // b가 최고
+                arr[1][ai] = 0;
+            }else{ // 둘이 같음
+                arr[1][ai] = 0;
+                arr[1][bi] = 0;
+            }
+        }
+
+        /*
+        for(int i = 0; i < N; i++){
+            System.out.print(arr[0][i] + " ");
+        }
+        System.out.println();
+        for(int i = 0; i < N; i++){
+            System.out.print(arr[1][i] + " ");
+        }
+        System.out.println();
+        */
+
+        int result = 0;
+        for(int i = 0; i < N; i++){
+            result += arr[1][i];
+        }
+
+        System.out.println(result);
+    }
+
+    public static int stringToInt(String str) {return Integer.parseInt(str);}
 }
