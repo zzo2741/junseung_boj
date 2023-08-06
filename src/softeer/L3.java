@@ -97,4 +97,41 @@ public class L3 {
 
         System.out.println(answer);
     }
+
+    public void q5() throws IOException { // 강의실배정
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        int[][] arr = new int[N][2];
+        StringTokenizer st;
+
+        for(int i = 0; i < N; i++){
+            st = new StringTokenizer(br.readLine());
+            arr[i][0] = Integer.parseInt(st.nextToken());
+            arr[i][1] = Integer.parseInt(st.nextToken());
+        }
+
+        // 종료시간으로 오름차순
+        Arrays.sort(arr, (o1, o2) -> o1[1] - o2[1]);
+
+        /*
+        for(int i = 0; i < N; i++){
+            System.out.println(arr[i][0] + " " + arr[i][1]);
+        }
+        */
+
+        // 스택에 담기 위해 마지막에 넣은 것이 top이기 때문
+        Stack<Integer> stack = new Stack<>();
+        stack.push(arr[0][1]);
+        for(int i = 1; i < N; i++){
+            // System.out.println("비교" + stack.peek() + " " + arr[i][0]);
+            // top과 비교
+            if(stack.peek() <= arr[i][0]){
+                stack.push(arr[i][1]);
+            }
+        }
+
+        // System.out.println(stack);
+        // 스택 사이즈가 강의실 배정 수
+        System.out.println(stack.size());
+    }
 }
