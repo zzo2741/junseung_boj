@@ -98,7 +98,7 @@ public class L3 {
         System.out.println(answer);
     }
 
-    public void q5() throws IOException { // 강의실배정
+    public void q5() throws IOException { // 강의실배정(백준보다는 쉬운 문제)
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         int[][] arr = new int[N][2];
