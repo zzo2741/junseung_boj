@@ -183,5 +183,9 @@ public class L3 {
         System.out.println(result);
     }
 
+    public void q7() throws IOException { // 택배 마스터 광우
+        // L3_Q7 확인
+    }
+
     public static int stringToInt(String str) {return Integer.parseInt(str);}
 }
