@@ -187,5 +187,39 @@ public class L3 {
         // L3_Q7 확인
     }
 
+    public void q8() throws IOException { // 동계 테스트 시점 예측
+        // L3_Q8 확인
+    }
+
+    public void q9() throws IOException { // 스마트 물류
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        String[] strArr = br.readLine().split("");
+        int answer = 0;
+        for(int i = 0; i < N; i++){
+            if("P".equals(strArr[i])){ // 로보트 일때
+                for(int j = i - K; j <= i + K; j++){
+                    if(j >= 0 && j < N){ // 시작이 0이고 마지막이 배열 크기보다 작아야함
+                        if("H".equals(strArr[j])){
+                            answer++; // 카운트
+                            strArr[j] = "X"; // 잡은 부품은 X로
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        /*
+        for(int i = 0; i < N; i++){
+            System.out.print(strArr[i] + " ");
+        }
+        */
+
+        System.out.println(answer);
+    }
+
     public static int stringToInt(String str) {return Integer.parseInt(str);}
 }

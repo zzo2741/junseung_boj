@@ -48,4 +48,32 @@ public class Lv3 { // 레벨 3
 
         return answer;
     }
+
+    public int solution2(int[][] triangle) { // 정수 삼각형
+        int answer = 0;
+
+        for(int i = 1; i < triangle.length; i++){
+            for(int j = 0; j < triangle[i].length; j++){
+                if(j == 0){
+                    triangle[i][j] += triangle[i-1][j];
+                }else if(j == triangle[i].length - 1){
+                    triangle[i][j] += triangle[i-1][j - 1];
+                }else{
+                    triangle[i][j] += Math.max(triangle[i-1][j - 1], triangle[i-1][j]);
+                }
+                answer = Math.max(answer, triangle[i][j]);
+            }
+        }
+
+        /*
+        for(int i = 0; i < triangle.length; i++){
+            for(int j = 0; j < triangle[i].length; j++){
+                System.out.print(triangle[i][j] + " ");
+            }
+            System.out.println();
+        }
+        */
+
+        return answer;
+    }
 }
